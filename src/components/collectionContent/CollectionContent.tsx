@@ -24,7 +24,6 @@ const CollectionContent = () => {
       <div dangerouslySetInnerHTML={{ __html: sanitize(markup) }}></div>
       <p>CollectionContent</p>
       <div>
-        рпрппрпрп
         <ul>
           {typeof document == "undefined"
             ? content.map((el) => (
@@ -34,7 +33,11 @@ const CollectionContent = () => {
               ))
             : filter(content, document).map((el) => (
                 <li>
-                  <p>{el.data().info}</p>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: sanitize(el.data().info),
+                    }}
+                  ></div>
                 </li>
               ))}
         </ul>

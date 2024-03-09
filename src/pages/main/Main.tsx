@@ -7,12 +7,6 @@ import Test from "./Test.tsx";
 import CollectionContent from "../../components/collectionContent/CollectionContent.tsx";
 
 const Main = () => {
-  // console.log(jsonData);
-  // getCities();
-  // getCities("JS").then((data) => {
-  //   console.log(data);
-  // });
-
   return (
     <div>
       <Routes>
