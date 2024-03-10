@@ -26,13 +26,7 @@ const CollectionContent = () => {
   return (
     <div>
       <p>CollectionContent</p>
-      <button
-        onClick={() => {
-          setEdit(!edit);
-        }}
-      >
-        Edit
-      </button>
+
       <div>
         <ul>
           {typeof document == "undefined"
@@ -51,8 +45,15 @@ const CollectionContent = () => {
                     ></div>
                   ) : (
                     <div>
+                      <button
+                        onClick={() => {
+                          setEdit(!edit);
+                        }}
+                      >
+                        Edit
+                      </button>
                       <textarea onChange={(e) => setTextEdit(e.target.value)}>
-                        {el.data().info}
+                        {sanitize(el.data().info)}
                       </textarea>
                       <button
                         onClick={() => {

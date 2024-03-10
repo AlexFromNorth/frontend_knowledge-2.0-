@@ -11,9 +11,14 @@ const Main = () => {
     <div>
       <Routes>
         <Route path="/" element={<Collections />} />
+        {/* <Route path="/JS" element={<Collections />} /> */}
         <Route path="/:collection" element={<CollectionContent />} />
         <Route path=":collection/:document" element={<CollectionContent />} />
       </Routes>
+      {/* на хостинге есть проблема при отрисовки конкретного адреса  http://m90941t3.beget.tech/JS выдает ошибку 
+      Not Found
+      The requested URL was not found on this server.
+      -думаю эта проблема связана с роутерами(путями)*/}
 
       <div className="App"></div>
     </div>
