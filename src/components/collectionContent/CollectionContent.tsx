@@ -24,8 +24,9 @@ const CollectionContent = () => {
   }, [refresh]);
 
   return (
-    <div>
-      <p>CollectionContent</p>
+    <div className="collectionContent container">
+      <h3>Статьи:</h3>
+      {/* добавить кнопки перемещения и условия их отображения */}
 
       <div>
         <ul>
@@ -38,11 +39,21 @@ const CollectionContent = () => {
             : filter(content, document).map((el) => (
                 <div key={el.id}>
                   {!edit ? (
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: sanitize(el.data().info),
-                      }}
-                    ></div>
+                    <div>
+                      {/* <button
+                        onClick={() => {
+                          setEdit(!edit);
+                        }}
+                      >
+                        Edit
+                      </button> */}
+                      <div
+                        className="info"
+                        dangerouslySetInnerHTML={{
+                          __html: sanitize(el.data().info),
+                        }}
+                      ></div>
+                    </div>
                   ) : (
                     <div>
                       <button

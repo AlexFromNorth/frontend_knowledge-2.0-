@@ -1,6 +1,11 @@
+.header {
+  background-color: var(--white);
+}
+
+.collectionContent .info > * {
+  margin-bottom: 20px;
+}
+
 .footer {
-  float: bottom;
-  height: 100vh;
-  vertical-align: bottom;
-  align-self: end;
+  margin-top: auto;
 }
