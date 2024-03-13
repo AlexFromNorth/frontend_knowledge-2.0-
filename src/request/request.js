@@ -1,24 +1,5 @@
-import { initializeApp } from "firebase/app";
-import {
-  collection,
-  getDocs,
-  getFirestore,
-  setDoc,
-  doc,
-} from "firebase/firestore";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAnvnLPzJzDlJfbQRAb4JRLrUIypeDZy0U",
-  authDomain: "lessoninitproject.firebaseapp.com",
-  projectId: "lessoninitproject",
-  storageBucket: "lessoninitproject.appspot.com",
-  messagingSenderId: "297250618695",
-  appId: "1:297250618695:web:cd99e0bc2dcda8fd59e062",
-  measurementId: "G-CXWE8GBM6Q",
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+import { collection, getDocs, setDoc, doc } from "firebase/firestore";
+import { db } from "./firebase-config";
 
 export const getCities = async (coll) => {
   const citiesCol = collection(db, coll);
