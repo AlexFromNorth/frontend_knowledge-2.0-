@@ -1,40 +1,55 @@
-import { SignUpWithEmailAndPassword } from 'firebase/auth';
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import { auth, database } from "../../request/firebase-config";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const SignIn = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-  
-    const [error, setError] = useState('')
-  
-    function logIn(e){
-      e.preventDefault()
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [copyPassword, setCopyPassword] = useState("");
 
-      SignUpWithEmailAndPassword(auth, email, password)
-        .then((user)=>{
-        //   console.log(user)
-          setError('')
-          setEmail('')
-          setPassword('')
-        })
-        .catch((error)=>{
-            // console.log(error)
-            setError('Sorry, couldn`t find your account')
-        })
+  const [error, setError] = useState("");
+
+  function register(e) {
+    e.preventDefault();
+    if (password != copyPassword) {
+      setError("Passwords didn`t match");
+      return;
     }
-  
-    return (
-      <div>
-        <form action="" onSubmit={(e)=>logIn(e)}>
-          <h2>Login to an account</h2>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-          {error && <p>{error}</p>}
-          <button>Login</button>
-        </form>
-      </div>
-    );
-}
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((user) => {
+        // console.log(user)
+        setError("");
+        setEmail("");
+        setPassword("");
+        setCopyPassword("");
+      })
+      .catch((error) => console.log(error));
+  }
 
-export default SignIn
+  return (
+    <div>
+      <form action="" onSubmit={(e) => register(e)}>
+        <h2>Create an account</h2>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <input
+          type="password"
+          value={copyPassword}
+          onChange={(e) => setCopyPassword(e.target.value)}
+        />
+        {error && <p>{error}</p>}
+        <button>Create</button>
+      </form>
+    </div>
+  );
+};
+
+export default SignIn;
