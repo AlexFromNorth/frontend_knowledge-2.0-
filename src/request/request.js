@@ -8,8 +8,8 @@ export const getCities = async (coll) => {
   return cityList;
 };
 
-const cityRef = doc(db, "cities", "BJ");
-setDoc(cityRef, { capital: true }, { merge: true });
+// const cityRef = doc(db, "cities", "BJ");
+// setDoc(cityRef, { capital: true }, { merge: true });
 
 export const updateDocument = async (collection, document, text) => {
   await setDoc(doc(db, collection, document), {
