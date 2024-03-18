@@ -1,4 +1,5 @@
-import { SignUpWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
+
 import React, { useState } from "react";
 import { auth, database } from "../../request/firebase-config";
 
@@ -11,7 +12,7 @@ const SignUp = () => {
   function logIn(e) {
     e.preventDefault();
 
-    SignUpWithEmailAndPassword(auth, email, password)
+    signInWithEmailAndPassword(auth, email, password)
       .then((user) => {
         //   console.log(user)
         setError("");
@@ -45,4 +46,4 @@ const SignUp = () => {
   );
 };
 
-export default SignIUp;
+export default SignUp;
