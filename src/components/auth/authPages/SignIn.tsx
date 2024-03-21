@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { auth, database } from "../../request/firebase-config";
+import { auth, database } from "../../../request/firebase-config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const SignIn = () => {
@@ -17,7 +17,7 @@ const SignIn = () => {
     }
     createUserWithEmailAndPassword(auth, email, password)
       .then((user) => {
-        // console.log(user)
+        console.log(user, "created user");
         setError("");
         setEmail("");
         setPassword("");

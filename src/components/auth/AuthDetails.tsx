@@ -1,6 +1,9 @@
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
-import { auth, database } from "../../request/firebase-config";
+import { auth, database } from "../../request/firebase-config.js";
+import SignIn from "./authPages/SignIn.tsx";
+import SignUp from "./authPages/SignUp.tsx";
+import FormAuth from "./authPages/FormAuth.tsx";
 
 const AuthDetails = () => {
   const [authUser, setAuthUser] = useState(null);
@@ -9,12 +12,14 @@ const AuthDetails = () => {
     const listen = onAuthStateChanged(auth, (user) => {
       if (user) {
         setAuthUser(user);
+        console.log(user, "auth");
       } else {
         setAuthUser(null);
+        console.log("dont auth");
       }
     });
 
-    console.log(database);
+    // console.log(database);
   });
   useEffect(() => {
     // console.log(authUser);
@@ -43,7 +48,7 @@ const AuthDetails = () => {
         </div>
       ) : (
         <div>
-          <p>Sign Out</p>
+          <FormAuth />
         </div>
       )}
     </div>
