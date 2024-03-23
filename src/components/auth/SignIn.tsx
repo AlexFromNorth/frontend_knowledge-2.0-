@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { auth, database } from "../../../request/firebase-config";
+import { auth, database } from "../../request/firebase-config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const SignIn = () => {

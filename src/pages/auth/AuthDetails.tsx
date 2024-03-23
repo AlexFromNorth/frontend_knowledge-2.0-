@@ -1,24 +1,16 @@
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { auth, database } from "../../request/firebase-config.js";
-import SignIn from "./authPages/SignIn.tsx";
-import SignUp from "./authPages/SignUp.tsx";
-import FormAuth from "./authPages/FormAuth.tsx";
+
+import FormAuth from "../../components/auth/FormAuth.tsx";
+import { currentUser, updateProfile } from "../../components/auth/methods.ts";
 
 const AuthDetails = () => {
   const [authUser, setAuthUser] = useState(null);
 
   useEffect(() => {
-    const listen = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setAuthUser(user);
-        console.log(user, "auth");
-      } else {
-        setAuthUser(null);
-        console.log("dont auth");
-      }
-    });
-
+    updateProfile(auth, false, "Name123", "photoUrl", "about");
+    currentUser(auth, setAuthUser);
     // console.log(database);
   });
   useEffect(() => {
