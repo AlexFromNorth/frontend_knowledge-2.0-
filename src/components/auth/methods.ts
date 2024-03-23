@@ -4,16 +4,16 @@ export const currentUser = (auth, setAuthUser) => {
   onAuthStateChanged(auth, (user) => {
     if (user) {
       setAuthUser(user);
-      console.log(user, "auth");
+      // console.log(user, "auth");
     } else {
       setAuthUser(null);
-      console.log("dont auth");
+      // console.log("dont auth");
     }
   });
 };
 
 export const updateProfile = (auth, admin, name, photo, about) => {
-  console.log(admin);
+  // console.log(admin);
   onAuthStateChanged(auth, (user) => {
     if (admin != null) {
       user.admin = admin;

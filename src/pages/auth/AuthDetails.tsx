@@ -4,16 +4,24 @@ import { auth, database } from "../../request/firebase-config.js";
 
 import FormAuth from "../../components/auth/FormAuth.tsx";
 import { currentUser, updateProfile } from "../../components/auth/methods.ts";
+import { useDispatch, useSelector } from "react-redux";
+import { getAuth } from "../../redux/authSlice.ts";
+import { RootState } from "../../redux/store.ts";
 
 const AuthDetails = () => {
   const [authUser, setAuthUser] = useState(null);
+  const dispatch = useDispatch();
+  const count = useSelector((state: RootState) => state.counter);
 
   useEffect(() => {
     updateProfile(auth, false, "Name123", "photoUrl", "about");
     currentUser(auth, setAuthUser);
+
     // console.log(database);
   });
   useEffect(() => {
+    dispatch(getAuth(authUser));
+    console.log(count);
     // console.log(authUser);
   }, [authUser]);
 
