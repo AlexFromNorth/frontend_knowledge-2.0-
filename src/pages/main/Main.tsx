@@ -5,21 +5,25 @@ import { Link, Route, Routes } from "react-router-dom";
 import Collections from "../../components/collections/Collections.tsx";
 import Test from "./Test.tsx";
 import CollectionContent from "../../components/collectionContent/CollectionContent.tsx";
+import { RootState } from "../../redux/store.ts";
+import { useSelector } from "react-redux";
 
 const Main = () => {
-  // console.log(jsonData);
-  // getCities();
-  // getCities("JS").then((data) => {
-  //   console.log(data);
-  // });
+  // const count = useSelector((state: RootState) => state.auth);
 
+  // console.log(count);
   return (
     <div>
       <Routes>
         <Route path="/" element={<Collections />} />
+        {/* <Route path="/JS" element={<Collections />} /> */}
         <Route path="/:collection" element={<CollectionContent />} />
         <Route path=":collection/:document" element={<CollectionContent />} />
       </Routes>
+      {/* на хостинге есть проблема при отрисовки конкретного адреса  http://m90941t3.beget.tech/JS выдает ошибку 
+      Not Found
+      The requested URL was not found on this server.
+      -думаю эта проблема связана с роутерами(путями)*/}
 
       <div className="App"></div>
     </div>

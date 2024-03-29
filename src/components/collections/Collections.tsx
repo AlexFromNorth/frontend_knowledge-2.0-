@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 
 const Collections = () => {
   return (
-    <ul>
+    <ul className="collections center container">
       {jsonData.map((el) => (
-        <li>
+        <li key={el}>
           <Link to={el}>{el}</Link>
         </li>
       ))}
