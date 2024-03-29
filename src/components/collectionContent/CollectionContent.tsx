@@ -3,6 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import { getCities, updateDocument } from "../../request/request";
 import { filter } from "./filter.ts";
 import { sanitize } from "dompurify";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store.ts";
 
 const CollectionContent = () => {
   const { collection, document } = useParams();
@@ -11,10 +13,14 @@ const CollectionContent = () => {
   const [textEdit, setTextEdit] = useState(null);
   const [refresh, setRefresh] = useState(false);
 
+  const user = useSelector((state: RootState) => state.auth);
+
   content.length < 1 &&
     getCities(collection).then((data) => {
       setcontent(data);
     });
+
+  console.log(user?.auth?.admin);
 
   // rerender component to edit
   useEffect(() => {
@@ -40,13 +46,17 @@ const CollectionContent = () => {
                 <div key={el.id}>
                   {!edit ? (
                     <div>
-                      {/* <button
-                        onClick={() => {
-                          setEdit(!edit);
-                        }}
-                      >
-                        Edit
-                      </button> */}
+                      {/* btn for edit data_collection */}
+                      {user?.auth?.admin == true && (
+                        <button
+                          onClick={() => {
+                            setEdit(!edit);
+                          }}
+                        >
+                          Edit
+                        </button>
+                      )}
+
                       <div
                         className="info"
                         dangerouslySetInnerHTML={{

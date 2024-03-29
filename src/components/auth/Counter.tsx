@@ -4,7 +4,7 @@ import { RootState } from "../../redux/store";
 import { decrement, increment } from "../../redux/authSlice.ts";
 
 export function Counter() {
-  const count = useSelector((state: RootState) => state.counter.value);
+  const count = useSelector((state: RootState) => state.auth.value);
   const dispatch = useDispatch();
 
   return (

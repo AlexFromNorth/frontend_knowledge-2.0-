@@ -5,8 +5,13 @@ import { Link, Route, Routes } from "react-router-dom";
 import Collections from "../../components/collections/Collections.tsx";
 import Test from "./Test.tsx";
 import CollectionContent from "../../components/collectionContent/CollectionContent.tsx";
+import { RootState } from "../../redux/store.ts";
+import { useSelector } from "react-redux";
 
 const Main = () => {
+  // const count = useSelector((state: RootState) => state.auth);
+
+  // console.log(count);
   return (
     <div>
       <Routes>

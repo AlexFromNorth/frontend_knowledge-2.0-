@@ -15,17 +15,21 @@ export const currentUser = (auth, setAuthUser) => {
 export const updateProfile = (auth, admin, name, photo, about) => {
   // console.log(admin);
   onAuthStateChanged(auth, (user) => {
-    if (admin != null) {
-      user.admin = admin;
-    }
-    if (name != null) {
-      user.name = name;
-    }
-    if (photo != null) {
-      user.photo = photo;
-    }
-    if (about != null) {
-      user.about = about;
+    if (user != null) {
+      console.log(user);
+
+      if (admin != null) {
+        user.admin = admin;
+      }
+      if (name != null) {
+        user.name = name;
+      }
+      if (photo != null) {
+        user.photo = photo;
+      }
+      if (about != null) {
+        user.about = about;
+      }
     }
   });
 };

@@ -11,17 +11,19 @@ import { RootState } from "../../redux/store.ts";
 const AuthDetails = () => {
   const [authUser, setAuthUser] = useState(null);
   const dispatch = useDispatch();
-  const count = useSelector((state: RootState) => state.counter);
+  // const count = useSelector((state: RootState) => state.auth);
+  // console.log(count);
 
   useEffect(() => {
-    updateProfile(auth, false, "Name123", "photoUrl", "about");
+    updateProfile(auth, true, "Name123", "photoUrl", "about");
     currentUser(auth, setAuthUser);
 
-    // console.log(database);
+    // console.log(count);
   });
   useEffect(() => {
     dispatch(getAuth(authUser));
-    console.log(count);
+    // console.log(authUser);
+    // console.log(count);
     // console.log(authUser);
   }, [authUser]);
 
