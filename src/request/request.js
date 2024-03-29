@@ -1,4 +1,10 @@
-import { collection, getDocs, setDoc, doc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  setDoc,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "./firebase-config";
 
 export const getCities = async (coll) => {
@@ -12,7 +18,8 @@ export const getCities = async (coll) => {
 // setDoc(cityRef, { capital: true }, { merge: true });
 
 export const updateDocument = async (collection, document, text) => {
-  await setDoc(doc(db, collection, document), {
+  // await setDoc(doc(db, collection, document), {
+  await updateDoc(doc(db, collection, document), {
     info: text,
   });
 };

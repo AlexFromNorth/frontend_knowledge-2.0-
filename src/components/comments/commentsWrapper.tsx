@@ -1,7 +1,7 @@
 import React from "react";
 
-const commentsWrapper = () => {
-  return <div>commentsWrapper</div>;
+const CommentsWrapper = () => {
+  return <div></div>;
 };
 
-export default commentsWrapper;
+export default CommentsWrapper;

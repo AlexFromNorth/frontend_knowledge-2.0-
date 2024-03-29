@@ -5,6 +5,7 @@ import { filter } from "./filter.ts";
 import { sanitize } from "dompurify";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store.ts";
+import CommentsWrapper from "../comments/CommentsWrapper.tsx";
 
 const CollectionContent = () => {
   const { collection, document } = useParams();
@@ -45,25 +46,27 @@ const CollectionContent = () => {
             : filter(content, document).map((el) => (
                 <div key={el.id}>
                   {!edit ? (
-                    <div>
-                      {/* btn for edit data_collection */}
-                      {user?.auth?.admin == true && (
-                        <button
-                          onClick={() => {
-                            setEdit(!edit);
+                    <>
+                      <div>
+                        {/* btn for edit data_collection */}
+                        {user?.auth?.admin == true && (
+                          <button
+                            onClick={() => {
+                              setEdit(!edit);
+                            }}
+                          >
+                            Edit
+                          </button>
+                        )}
+                        <div
+                          className="info"
+                          dangerouslySetInnerHTML={{
+                            __html: sanitize(el.data().info),
                           }}
-                        >
-                          Edit
-                        </button>
-                      )}
-
-                      <div
-                        className="info"
-                        dangerouslySetInnerHTML={{
-                          __html: sanitize(el.data().info),
-                        }}
-                      ></div>
-                    </div>
+                        ></div>
+                      </div>
+                      <CommentsWrapper />
+                    </>
                   ) : (
                     <div>
                       <button
