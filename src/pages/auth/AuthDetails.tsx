@@ -9,6 +9,8 @@ import { getAuth } from "../../redux/authSlice.ts";
 import { RootState } from "../../redux/store.ts";
 
 const AuthDetails = () => {
+  const user = useSelector((state: RootState) => state.auth);
+
   const [authUser, setAuthUser] = useState(null);
   const dispatch = useDispatch();
   // const count = useSelector((state: RootState) => state.auth);
