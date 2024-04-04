@@ -1,33 +1,47 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getCities, updateDocument } from "../../request/request";
+import { getDates, updateDocument } from "../../request/request";
 import { filter } from "./filter.ts";
 import { sanitize } from "dompurify";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store.ts";
+import CommentsWrapper from "../comments/CommentsWrapper.tsx";
+import { putCollection } from "../../redux/authSlice.ts";
 
 const CollectionContent = () => {
   const { collection, document } = useParams();
-  const [content, setcontent] = useState([]);
+  const [content, setContent] = useState([]);
   const [edit, setEdit] = useState(false);
   const [textEdit, setTextEdit] = useState(null);
   const [refresh, setRefresh] = useState(false);
 
+  const dispatch = useDispatch();
+
   const user = useSelector((state: RootState) => state.auth);
 
   content.length < 1 &&
-    getCities(collection).then((data) => {
-      setcontent(data);
+    getDates(collection).then((data) => {
+      setContent(data);
+      console.log(1);
     });
 
-  console.log(user?.auth?.admin);
+  // console.log(user?.auth?.admin);
 
   // rerender component to edit
   useEffect(() => {
-    getCities(collection).then((data) => {
-      setcontent(data);
+    getDates(collection).then((data) => {
+      setContent(data);
     });
   }, [refresh]);
+
+  useEffect(() => {
+    // const itemInner = content.map((item) => item.id);
+    dispatch(putCollection(content));
+    // console.log(itemInner);
+    // здесь мы получаем разные элементы из хранилища
+    // надо доделать и отобразить на странице
+    console.log(content.forEach((item) => console.log(item.data())));
+  }, [content]);
 
   return (
     <div className="collectionContent container">
@@ -45,25 +59,27 @@ const CollectionContent = () => {
             : filter(content, document).map((el) => (
                 <div key={el.id}>
                   {!edit ? (
-                    <div>
-                      {/* btn for edit data_collection */}
-                      {user?.auth?.admin == true && (
-                        <button
-                          onClick={() => {
-                            setEdit(!edit);
+                    <>
+                      <div>
+                        {/* btn for edit data_collection */}
+                        {user?.auth?.admin == true && (
+                          <button
+                            onClick={() => {
+                              setEdit(!edit);
+                            }}
+                          >
+                            Edit
+                          </button>
+                        )}
+                        <div
+                          className="info"
+                          dangerouslySetInnerHTML={{
+                            __html: sanitize(el.data().info),
                           }}
-                        >
-                          Edit
-                        </button>
-                      )}
-
-                      <div
-                        className="info"
-                        dangerouslySetInnerHTML={{
-                          __html: sanitize(el.data().info),
-                        }}
-                      ></div>
-                    </div>
+                        ></div>
+                      </div>
+                      <CommentsWrapper />
+                    </>
                   ) : (
                     <div>
                       <button

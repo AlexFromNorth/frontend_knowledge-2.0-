@@ -16,7 +16,7 @@ export const updateProfile = (auth, admin, name, photo, about) => {
   // console.log(admin);
   onAuthStateChanged(auth, (user) => {
     if (user != null) {
-      console.log(user);
+      // console.log(user);
 
       if (admin != null) {
         user.admin = admin;
