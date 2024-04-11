@@ -16,6 +16,8 @@ const CommentsWrapper = () => {
 
   const collectionData = filter(collection, document).map((el) => el.data());
 
+  // console.log(collectionData);
+
   const commentsData = (() => {
     const arr = [];
     const iter = collectionData[0];
@@ -32,7 +34,11 @@ const CommentsWrapper = () => {
   return (
     <div>
       {commentsData.map((el) => (
-        <div>{el.user}</div>
+        <div key={el.id}>
+          <h3>{el.user}</h3>
+          <h3>{new Date(el.time).toString()}</h3>
+          <p>{el.text}</p>
+        </div>
       ))}
       <Comment />
       <CommentsInner />
