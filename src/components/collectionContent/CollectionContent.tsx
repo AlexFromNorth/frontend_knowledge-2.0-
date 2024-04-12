@@ -22,7 +22,7 @@ const CollectionContent = () => {
   content.length < 1 &&
     getDates(collection).then((data) => {
       setContent(data);
-      console.log(1);
+      // console.log(1);
     });
 
   // console.log(user?.auth?.admin);
@@ -40,7 +40,7 @@ const CollectionContent = () => {
     // console.log(itemInner);
     // здесь мы получаем разные элементы из хранилища
     // надо доделать и отобразить на странице
-    console.log(content.forEach((item) => console.log(item.data())));
+    // console.log(content.forEach((item) => console.log(item.data())));
   }, [content]);
 
   return (
